@@ -16,6 +16,10 @@ import AgroKanbanTasks from './AgroKanbanTasks';
 import AgroGreenhouseControl from './AgroGreenhouseControl';
 import AgroLivestockHub from './AgroLivestockHub';
 import AgroBotanicalModule from './AgroBotanicalModule';
+import AgroProductShop from './AgroProductShop';
+import AgroPestWarning from './AgroPestWarning';
+import AgroWorkforceLeaderboard from './AgroWorkforceLeaderboard';
+import AgroSupplyChainTrace from './AgroSupplyChainTrace';
 
 interface AgroMaitreSuiteProps {
   onAddLog: (level: 'info' | 'success' | 'warn' | 'error', message: string) => void;
@@ -38,12 +42,20 @@ export default function AgroMaitreSuite({ onAddLog }: AgroMaitreSuiteProps) {
     | 'telemetry_iot'
     | 'livestock_hub'
     | 'botanical_module'
+    | 'product_shop'
+    | 'pest_warnings'
+    | 'workforce_leaderboard'
+    | 'supply_chain_trace'
   >('livestock_hub');
 
   // SLEEK MINUSCULE MENU: Small list mapping for top navigation bar
   const portals = [
     { id: 'livestock_hub' as const, title: 'Livestock Hub', icon: '🐄', tag: 'Img 6 New' },
     { id: 'botanical_module' as const, title: 'Botanical Module', icon: '🌿', tag: 'Img 7 New' },
+    { id: 'product_shop' as const, title: 'Product Shop', icon: '🛒', tag: 'Img 1 New' },
+    { id: 'pest_warnings' as const, title: 'Pest Warnings', icon: '🐛', tag: 'Img 2 New' },
+    { id: 'workforce_leaderboard' as const, title: 'Workforce Performance', icon: '🏆', tag: 'Img 3 New' },
+    { id: 'supply_chain_trace' as const, title: 'Supply Chain Trace', icon: '🚚', tag: 'Img 4 New' },
     { id: 'workspace' as const, title: 'Workspace Settings', icon: '⚙️', tag: 'Img 1 DB' },
     { id: 'irrigation' as const, title: 'Irrigation & Weather', icon: '💧', tag: 'Image 1' },
     { id: 'tasks_kanban' as const, title: 'Tasks Kanban', icon: '📋', tag: 'Image 2' },
@@ -86,7 +98,7 @@ export default function AgroMaitreSuite({ onAddLog }: AgroMaitreSuiteProps) {
           {portals.map(p => {
             const isSelected = activePortal === p.id;
             const isPrimaryImage = ['irrigation', 'tasks_kanban', 'ai_predictive', 'finance', 'greenhouse'].includes(p.id);
-            const isNewImage = ['livestock_hub', 'botanical_module'].includes(p.id);
+            const isNewImage = ['livestock_hub', 'botanical_module', 'product_shop', 'pest_warnings', 'workforce_leaderboard', 'supply_chain_trace'].includes(p.id);
 
             return (
               <button
@@ -145,6 +157,54 @@ export default function AgroMaitreSuite({ onAddLog }: AgroMaitreSuiteProps) {
               transition={{ duration: 0.12 }}
             >
               <AgroBotanicalModule onAddLog={onAddLog} />
+            </motion.div>
+          )}
+
+          {activePortal === 'product_shop' && (
+            <motion.div
+              key="portal-product-shop"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.12 }}
+            >
+              <AgroProductShop onAddLog={onAddLog} />
+            </motion.div>
+          )}
+
+          {activePortal === 'pest_warnings' && (
+            <motion.div
+              key="portal-pest-warnings"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.12 }}
+            >
+              <AgroPestWarning onAddLog={onAddLog} />
+            </motion.div>
+          )}
+
+          {activePortal === 'workforce_leaderboard' && (
+            <motion.div
+              key="portal-workforce-leaderboard"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.12 }}
+            >
+              <AgroWorkforceLeaderboard onAddLog={onAddLog} />
+            </motion.div>
+          )}
+
+          {activePortal === 'supply_chain_trace' && (
+            <motion.div
+              key="portal-supply-chain-trace"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.12 }}
+            >
+              <AgroSupplyChainTrace onAddLog={onAddLog} />
             </motion.div>
           )}
 
