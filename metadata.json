@@ -1,0 +1,6 @@
+{
+  "name": "Cyber-Compliance",
+  "description": "Tableau de bord haute performance de cybersécurité, de monitoring de conformité SOC 2 et de contrôle de nœuds d'infrastructure.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
